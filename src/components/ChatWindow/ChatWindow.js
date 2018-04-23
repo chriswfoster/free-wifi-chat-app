@@ -19,10 +19,9 @@ class ChatWindow extends Component {
   componentDidMount() {
     const { endpoint } = this.state
     const socket = socketIOClient(endpoint)
-    socket.on("FromSD1", data =>
-      this.setState({ response1: data.data1, response2: data.data2 })
+    socket.on("FromServer", data =>
+      console.log(data)
     )
-    console.log("Server 1")
 
     this.setState({color: `rgb(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)})`})
 
