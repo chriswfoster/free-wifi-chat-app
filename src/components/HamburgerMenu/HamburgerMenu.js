@@ -43,7 +43,6 @@ class HamburgerMenu extends Component {
               Why broadcast this chat app?
             </button>
           </p>
-          <p>Another item3</p>
           <div>
             <p style={{ border: "none" }}>Members in chat: </p>
             {users}

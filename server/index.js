@@ -13,8 +13,28 @@ app.use(cors())
 
 const PORT = 1738
 
-let chatText = []
-let members = []
+let chatText = [
+  {
+    user: "Chris",
+    color: "white",
+    time: "1524511125",
+    message:
+      "Hi, welcome to my chat app. This is a social platform for communicating with other people that are VERY close to you!"
+  },
+  {
+    user: "Chris",
+    color: "white",
+    time: "1524511125",
+    message:
+      "This chat is only accessible if you're within range of my wifi. Thanks and have fun! :)"
+  }
+]
+let members = [
+  {
+    user: "Chris the admin",
+    color: "white"
+  }
+]
 
 let interval
 io.on("connection", socket => {
