@@ -1,32 +1,202 @@
-.navbarbackground{
-    background-color: black;
-    color: white;
+.navbarbackground {
+  background-color: black;
+  color: white;
 }
-
 
 .dropdownanimator {
-    background-color: rgb(0, 0, 0);
-    border-color: grey;
-    border-style: inset;
-    height: 0vh;
-    max-width: 15vw;
-animation-name: dda;
-animation-duration: 0.5s;
-animation-fill-mode: forwards;
--webkit-animation-name: dda;
--webkit-animation-duration: 0.5s;
--webkit-animation-fill-mode: forwards;
-position: absolute;
-overflow-y: hidden;
-overflow-x: hidden;
+  background-color: rgb(0, 0, 0);
+  border-color: grey;
+  border-style: inset;
+  height: 0vh;
+  max-width: 15vw;
+  animation-name: dda;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  -webkit-animation-name: dda;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+  position: absolute;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
- .navbarbackground p {
-      border-style: solid;
-      color: lightblue;
-      border-color: white;
+.navbarbackground p {
+  border-style: solid;
+  color: lightblue;
+  border-color: white;
+}
+
+.navbarbackground p:hover {
+  border-color: blue;
+}
+
+.navbarbackground p button {
+  border-style: solid;
+  color: lightblue;
+  border-color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border-style: none;
+  font-size: 1em;
+}
+
+.navbarbackground p button:hover {
+  border-color: blue;
+}
+
+.navbarbackground {
+  background-color: black;
+  color: white;
+}
+
+.dropdownanimator {
+  background-color: rgb(0, 0, 0);
+  border-color: grey;
+  border-style: inset;
+  height: 0vh;
+  max-width: 15vw;
+  animation-name: dda;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  -webkit-animation-name: dda;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+  position: absolute;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.navbarbackground p {
+  border-style: solid;
+  color: lightblue;
+  border-color: white;
+}
+
+.navbarbackground p:hover {
+  border-color: blue;
+}
+
+/* ----------------------- SCROLL BAR FIX ------------------ */
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.219);
+}
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-corner {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px #9fbcff;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+/* ------------------------------ */
+
+/*  --------------------------- HAMBURGER CLASSES FOR REACT-HAMBURGER --------------------- */
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 66px;
+  height: 60px;
+  right: 30%;
+  top: 36px;
+  animation-name: dda;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 2s;
+  -webkit-animation-name: dda;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-delay: 2s;
+}
+.bm-burger-button:hover {
+  background-color: blue;
+}
+@keyframes dda {
+  0% {
+    transform: rotate(0deg);
+    width: 66px;
+    height: 60px;
+    right: 30vw;
+  }
+  50% {
+    background: red;
+    width: 92px;
+    height: 80px;
   }
 
-  .navbarbackground p:hover {
-   border-color: blue;
+  100% {
+    background: clear;
+    transform: rotate(360deg);
+    width: 66px;
+    height: 60px;
+    right: 5px;
+  }
+}
+@-webkit-keyframes dda {
+  0% {
+    transform: rotate(0deg);
+    width: 66px;
+    height: 60px;
+    right: 30vw;
+  }
+  50% {
+    background: red;
+    width: 92px;
+    height: 80px;
+  }
+
+  100% {
+    background: clear;
+    transform: rotate(360deg);
+    width: 66px;
+    height: 60px;
+    right: 5px;
+  }
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #ffffff;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #ff0000;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #000000;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #000000;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #ffffff;
+  padding: 0.8em;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
 }
