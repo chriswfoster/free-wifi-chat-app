@@ -19,11 +19,14 @@ class ChatWindow extends Component {
 
   sendMessage(e) {
     var elmnt = document.getElementById("content") /// this keeps my chat at the bottom of the window.
+    let date = Date.now() + ""
+    date = date.substring(0, date.length - 3)
     e.preventDefault()
     e.target.reset()
     axios
       .post("/api/sendmessage", {
         user: this.state.user,
+        time: date,
         message: this.state.messagetext
       })
       .then(response =>
@@ -36,8 +39,16 @@ class ChatWindow extends Component {
   render() {
     console.log(this.state)
     const messages = this.state.arrayOfMessages.map((item, ind) => (
-      <div>
-        <p>{`${item.user}: ${item.message}`}</p>
+      <div key={ind}>
+        <p>
+          {item.user}
+          {" {"}
+          <Moment unix fromNow style={{ fontSize: ".2em" }}>
+            {item.time}
+          </Moment>
+          {"}: "}
+          {item.message}
+        </p>
       </div>
     ))
     return (
