@@ -6,6 +6,7 @@ class HamburgerMenu extends Component {
 render() {
 return(
 <div>
+    
 </div>
 )}
 }
