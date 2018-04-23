@@ -1,8 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {background-color: powderblue;}
+h1   {color: blue;}
+p    {color: red;}
+</style>
+</head>
+<body>
 
-<div style="backgroundColor:blue"}>
+<h1>This is a heading</h1>
+<p>This is a paragraph.</p>
 
-<img src="https://raw.githubusercontent.com/chriswfoster/free-wifi-chat-app/master/Chat.png" alt="Chatwindow pic"/>
-<img src="https://raw.githubusercontent.com/chriswfoster/free-wifi-chat-app/master/Menu.png" alt="Menu pic"/>
-
-
-</div>
+</body>
+</html>
