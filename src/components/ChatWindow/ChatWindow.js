@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import axios from "axios"
+import moment from "moment"
 import Moment from "react-moment"
-const moment = require("moment")
+import socketIOClient from "socket.io-client"
 
 class ChatWindow extends Component {
   constructor() {
@@ -9,8 +10,22 @@ class ChatWindow extends Component {
     this.state = {
       messagetext: "",
       user: "ChRiSwF",
-      arrayOfMessages: []
+      color: "red",
+      arrayOfMessages: [],
+      endpoint: "http://127.0.0.1:1738"
     }
+  }
+
+  componentDidMount() {
+    const { endpoint } = this.state
+    const socket = socketIOClient(endpoint)
+    socket.on("FromSD1", data =>
+      this.setState({ response1: data.data1, response2: data.data2 })
+    )
+    console.log("Server 1")
+
+    this.setState({color: `rgb(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)})`})
+
   }
 
   textHandler(e) {
@@ -23,32 +38,38 @@ class ChatWindow extends Component {
     date = date.substring(0, date.length - 3)
     e.preventDefault()
     e.target.reset()
-    axios
-      .post("/api/sendmessage", {
-        user: this.state.user,
-        time: date,
-        message: this.state.messagetext
-      })
-      .then(response =>
-        this.setState({ arrayOfMessages: response.data }, () =>
-          elmnt.scrollIntoView()
-        )
-      )
+
+    {
+      this.state.messagetext.length > 0
+        ? axios
+            .post("/api/sendmessage", {
+              user: this.state.user,
+              color: this.state.color,
+              time: date,
+              message: this.state.messagetext
+            })
+            .then(response =>
+              this.setState(
+                { arrayOfMessages: response.data, messagetext: "" },
+                () => elmnt.scrollIntoView()
+              )
+            )
+        : alert("Please type a message first!")
+    }
   }
 
   render() {
     console.log(this.state)
     const messages = this.state.arrayOfMessages.map((item, ind) => (
-      <div key={ind}>
-        <p>
-          {item.user}
-          {" {"}
-          <Moment unix fromNow style={{ fontSize: ".2em" }}>
+      <div style={{ color: `${item.color}` }} key={ind}>
+        <p style={{ fontSize: ".4em", display: "inline" }}>{item.user}-</p>
+        <p style={{ fontSize: ".2em", display: "inline" }}>
+          {" ["}
+          <Moment unix fromNow>
             {item.time}
-          </Moment>
-          {"}: "}
-          {item.message}
+          </Moment>]
         </p>
+        <p style={{ display: "inline" }}>: {item.message}</p>
       </div>
     ))
     return (
