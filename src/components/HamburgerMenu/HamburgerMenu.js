@@ -34,7 +34,15 @@ class HamburgerMenu extends Component {
               How do I disconnect from this?
             </button>
           </p>
-          <p>Another item2</p>
+          <p>
+            <button
+              onClick={() =>
+                alert("Why not? For practice, fun, curiosity, etc?")
+              }
+            >
+              Why broadcast this chat app?
+            </button>
+          </p>
           <p>Another item3</p>
           <div>
             <p style={{ border: "none" }}>Members in chat: </p>
