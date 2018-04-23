@@ -18,7 +18,6 @@ class ChatWindow extends Component {
   }
 
   componentDidMount() {
-    let thirdword = nouns[Math.floor(Math.random() * Math.floor(500))]
     let firstword = colorWords[Math.floor(Math.random() * Math.floor(186))]
     let secondword = animals[Math.floor(Math.random() * Math.floor(150))]
 
@@ -26,9 +25,7 @@ class ChatWindow extends Component {
       firstword[0].toUpperCase() +
       firstword.slice(1) +
       secondword[0].toUpperCase() +
-      secondword.slice(1) +
-      thirdword[0].toUpperCase() +
-      thirdword.slice(1)
+      secondword.slice(1)
 
     const { endpoint } = this.state
     const socket = socketIOClient(endpoint)
@@ -93,7 +90,12 @@ class ChatWindow extends Component {
           <div id="content" />
         </div>
         <form className="submitForm" onSubmit={e => this.sendMessage(e)}>
-          <input onChange={e => this.textHandler(e)} type="text" />
+          <input
+            onChange={e => this.textHandler(e)}
+            type="text"
+            placeholder="Type message here."
+            autoFocus
+          />
           <input type="submit" text="Send" />
         </form>
       </div>

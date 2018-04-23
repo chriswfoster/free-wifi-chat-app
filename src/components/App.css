@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background-color: #000000;
+  height: 100vh;
+  width: 100vw;
 }
 
 @keyframes App-logo-spin {
@@ -12,20 +15,27 @@
 }
 
 .chatwindowMain {
-  width: 100vw;
-  height: 80vh;
+  width: 95vw;
+  height: 95vh;
+  left: 2.5vw;
+  top: 2.5vh;
   background-color: #2e4172;
   position: relative;
+  border-radius: 15px;
 }
 
 .submitForm {
   position: absolute;
   bottom: 0%;
 }
-.submitForm input {
+.submitInput {
   height: 3vh;
   width: 29vw;
 }
+.submitButton{
+  
+}
+
 .chatBoxWindowSub {
   text-align: bottom;
   text-align: left;
