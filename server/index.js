@@ -33,7 +33,6 @@ const getApiAndEmit = async socket => {
   try {
     socket.emit("FromServer", chatText)
     socket.emit("MembersList", members)
-    // console.log(sd1obj)
   } catch (error) {
     console.error(`Error: ${error.code}`)
   }
