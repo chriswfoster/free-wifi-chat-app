@@ -15,12 +15,12 @@ const PORT = 1738
 
 let chatText = []
 
-let interval;
+let interval
 io.on("connection", socket => {
-    if (interval) {
-        clearInterval(interval);
-      }
-  intervalId = setInterval(() => getApiAndEmit(socket), 5000)
+  if (interval) {
+    clearInterval(interval)
+  }
+  intervalId = setInterval(() => getApiAndEmit(socket), 3000)
 
   socket.on("disconnect", () => {
     console.log("Client disconnected")
@@ -30,19 +30,16 @@ io.on("connection", socket => {
 
 const getApiAndEmit = async socket => {
   try {
-    const sd1obj = {
-      data1: "This is the SD1 Message",
-    }
-    socket.emit("FromServer", sd1obj)
+    socket.emit("FromServer", chatText)
     // console.log(sd1obj)
   } catch (error) {
     console.error(`Error: ${error.code}`)
   }
 }
 
-app.post('/api/sendmessage', (req, res) => {
-    chatText.push(req.body)
-    res.status(200).json(chatText)
+app.post("/api/sendmessage", (req, res) => {
+  chatText.push(req.body)
+  res.status(200).json(chatText)
 })
 
 server.listen(PORT, () => console.log(`Reeemmmmyyyy boyyysss, ${PORT}!`))

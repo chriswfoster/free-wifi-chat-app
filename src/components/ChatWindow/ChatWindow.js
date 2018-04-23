@@ -3,6 +3,7 @@ import axios from "axios"
 import moment from "moment"
 import Moment from "react-moment"
 import socketIOClient from "socket.io-client"
+import { nouns, adjectives, animals, colorWords } from "./WordSelector"
 
 class ChatWindow extends Component {
   constructor() {
@@ -17,14 +18,28 @@ class ChatWindow extends Component {
   }
 
   componentDidMount() {
+    let thirdword = nouns[Math.floor(Math.random() * Math.floor(500))]
+    let firstword = colorWords[Math.floor(Math.random() * Math.floor(186))]
+    let secondword = animals[Math.floor(Math.random() * Math.floor(150))]
+
+    const word =
+      firstword[0].toUpperCase() +
+      firstword.slice(1) +
+      secondword[0].toUpperCase() +
+      secondword.slice(1) +
+      thirdword[0].toUpperCase() +
+      thirdword.slice(1)
+
     const { endpoint } = this.state
     const socket = socketIOClient(endpoint)
-    socket.on("FromServer", data =>
-      console.log(data)
-    )
+    socket.on("FromServer", data => this.setState({ arrayOfMessages: data }))
 
-    this.setState({color: `rgb(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)})`})
-
+    this.setState({
+      color: `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
+        Math.random() * 255
+      )}, ${Math.floor(Math.random() * 255)})`,
+      user: word
+    })
   }
 
   textHandler(e) {
