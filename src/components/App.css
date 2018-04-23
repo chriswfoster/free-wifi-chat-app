@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+}
+
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+
+
+.chatwindowMain{
+width: 60vw;
+height: 80vh;
+background-color: #2E4172;
+position: relative;
+
+}
+
+.submitForm{
+  position: absolute; 
+  bottom: 0%;
+}
+.submitForm input{
+  height: 3vh;
+  width: 29vw;
+}
+.chatBoxWindowSub {
+  text-align: bottom;
+  text-align: left;
+  overflow-y: scroll;
+  width: 95%;
+  height: 95%;
+  color: #9FBCFF;
+  left: 2.5%;
+  top: 2.5%;
+  padding: 1vw, 1vw, 3vh, 1vw;
+
+  position: absolute;
+}
