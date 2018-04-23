@@ -14,7 +14,7 @@ class App extends Component {
       user: "ChRiSwF",
       color: "red",
       arrayOfMessages: [],
-      endpoint: "http://127.0.0.1:1738",
+      endpoint: "http://chat.chriswf.com",
       userList: []
     }
   }
@@ -57,22 +57,21 @@ class App extends Component {
     e.preventDefault()
     e.target.reset()
 
-      this.state.messagetext.length > 0
-        ? axios
-            .post("/api/sendmessage", {
-              user: this.state.user,
-              color: this.state.color,
-              time: date,
-              message: this.state.messagetext
-            })
-            .then(response =>
-              this.setState(
-                { arrayOfMessages: response.data, messagetext: "" },
-                () => elmnt.scrollIntoView()
-              )
+    this.state.messagetext.length > 0
+      ? axios
+          .post("/api/sendmessage", {
+            user: this.state.user,
+            color: this.state.color,
+            time: date,
+            message: this.state.messagetext
+          })
+          .then(response =>
+            this.setState(
+              { arrayOfMessages: response.data, messagetext: "" },
+              () => elmnt.scrollIntoView()
             )
-        : alert("Please type a message first!")
-    
+          )
+      : alert("Please type a message first!")
   }
 
   render() {
