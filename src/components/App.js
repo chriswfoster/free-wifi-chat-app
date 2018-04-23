@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import ChatWindow from "./ChatWindow/ChatWindow"
 import HamburgerMenu from "./HamburgerMenu/HamburgerMenu"
-import { nouns, adjectives, animals, colorWords } from "./WordSelector"
+import { animals, colorWords } from "./WordSelector"
 import socketIOClient from "socket.io-client"
 import axios from "axios"
 import "./App.css"
@@ -14,7 +14,8 @@ class App extends Component {
       user: "ChRiSwF",
       color: "red",
       arrayOfMessages: [],
-      endpoint: "http://127.0.0.1:1738"
+      endpoint: "http://127.0.0.1:1738",
+      userList: []
     }
   }
 
@@ -31,13 +32,18 @@ class App extends Component {
     const { endpoint } = this.state
     const socket = socketIOClient(endpoint)
     socket.on("FromServer", data => this.setState({ arrayOfMessages: data }))
-    socket.on("")
-    this.setState({
-      color: `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
-        Math.random() * 255
-      )}, ${Math.floor(Math.random() * 255)})`,
-      user: word
-    })
+    socket.on("MembersList", data => this.setState({ userList: data }))
+
+    axios
+      .post("/api/usercreate", {
+        user: word,
+        color: `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
+          Math.random() * 255
+        )}, ${Math.floor(Math.random() * 255)})`
+      })
+      .then(response =>
+        this.setState({ user: response.data.user, color: response.data.color })
+      )
   }
 
   textHandler = e => {
@@ -51,7 +57,6 @@ class App extends Component {
     e.preventDefault()
     e.target.reset()
 
-    {
       this.state.messagetext.length > 0
         ? axios
             .post("/api/sendmessage", {
@@ -67,13 +72,14 @@ class App extends Component {
               )
             )
         : alert("Please type a message first!")
-    }
+    
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="App">
-        <HamburgerMenu />
+        <HamburgerMenu userList={this.state.userList} />
         <ChatWindow
           arrayOfMessages={this.state.arrayOfMessages}
           user={this.state.user}

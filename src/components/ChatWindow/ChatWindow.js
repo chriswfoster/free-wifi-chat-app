@@ -1,16 +1,10 @@
 import React, { Component } from "react"
-import moment from "moment"
 import Moment from "react-moment"
-
-
 
 class ChatWindow extends Component {
 
-  
-  
-
   render() {
-    console.log(this.props)
+
     const messages = this.props.arrayOfMessages.map((item, ind) => (
       <div style={{ color: `${item.color}` }} key={ind}>
         <p style={{ fontSize: ".4em", display: "inline" }}>{item.user}-</p>

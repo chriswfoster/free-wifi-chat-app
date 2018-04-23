@@ -4,38 +4,17 @@ import { stack as Menu } from "react-burger-menu"
 import "./hamburger.css"
 
 class HamburgerMenu extends Component {
-constructor(){
+  constructor() {
     super()
-    this.state = {
-
-    }
-}
-
-// componentDidMount() {
-//     let firstword = colorWords[Math.floor(Math.random() * Math.floor(186))]
-//     let secondword = animals[Math.floor(Math.random() * Math.floor(150))]
-
-//     const word =
-//       firstword[0].toUpperCase() +
-//       firstword.slice(1) +
-//       secondword[0].toUpperCase() +
-//       secondword.slice(1)
-
-//     const { endpoint } = this.state
-//     const socket = socketIOClient(endpoint)
-//     socket.on("FromServer", data => this.setState({ arrayOfMessages: data }))
-
-//     this.setState({
-//       color: `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
-//         Math.random() * 255
-//       )}, ${Math.floor(Math.random() * 255)})`,
-//       user: word
-//     })
-//   }
-
-
+    this.state = {}
+  }
 
   render() {
+    const users = this.props.userList.map((item, ind) => (
+      <p key={ind} style={{ color: `${item.color}`, border: "none" }}>
+        {item.user},
+      </p>
+    ))
     return (
       <div className="navbarbackground">
         <Menu
@@ -55,11 +34,12 @@ constructor(){
               How do I disconnect from this?
             </button>
           </p>
-          <div><p>Members in chat:</p>
-              
-              </div>
           <p>Another item2</p>
           <p>Another item3</p>
+          <div>
+            <p style={{ border: "none" }}>Members in chat: </p>
+            {users}
+          </div>
         </Menu>
       </div>
     )

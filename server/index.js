@@ -43,5 +43,10 @@ app.post("/api/sendmessage", (req, res) => {
   chatText.push(req.body)
   res.status(200).json(chatText)
 })
+app.post("/api/usercreate", (req, res) => {
+  members.includes(req.body)
+    ? null
+    : members.push(req.body) && res.status(200).json(req.body)
+})
 
 server.listen(PORT, () => console.log(`Reeemmmmyyyy boyyysss, ${PORT}!`))
