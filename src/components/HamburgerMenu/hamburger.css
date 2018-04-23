@@ -1,0 +1,32 @@
+.navbarbackground{
+    background-color: black;
+    color: white;
+}
+
+
+.dropdownanimator {
+    background-color: rgb(0, 0, 0);
+    border-color: grey;
+    border-style: inset;
+    height: 0vh;
+    max-width: 15vw;
+animation-name: dda;
+animation-duration: 0.5s;
+animation-fill-mode: forwards;
+-webkit-animation-name: dda;
+-webkit-animation-duration: 0.5s;
+-webkit-animation-fill-mode: forwards;
+position: absolute;
+overflow-y: hidden;
+overflow-x: hidden;
+}
+
+ .navbarbackground p {
+      border-style: solid;
+      color: lightblue;
+      border-color: white;
+  }
+
+  .navbarbackground p:hover {
+   border-color: blue;
+}
