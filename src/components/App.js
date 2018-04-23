@@ -14,7 +14,7 @@ class App extends Component {
       user: "ChRiSwF",
       color: "red",
       arrayOfMessages: [],
-      endpoint: "http://127.0.0.1:1738",
+      endpoint: "/",
       userList: []
     }
   }
