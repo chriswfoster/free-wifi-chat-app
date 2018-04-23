@@ -89,14 +89,19 @@ class ChatWindow extends Component {
           {messages}
           <div id="content" />
         </div>
-        <form className="submitForm" onSubmit={e => this.sendMessage(e)}>
+        <form
+          style={{ width: "100%" }}
+          className="submitForm"
+          onSubmit={e => this.sendMessage(e)}
+        >
           <input
+            className="submitInput"
             onChange={e => this.textHandler(e)}
             type="text"
             placeholder="Type message here."
             autoFocus
           />
-          <input type="submit" text="Send" />
+          <input type="submit" text="Send" className="submitButton" />
         </form>
       </div>
     )

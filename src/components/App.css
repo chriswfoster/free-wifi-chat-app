@@ -30,10 +30,18 @@
 }
 .submitInput {
   height: 3vh;
-  width: 29vw;
+  width: 65%;
+  border-radius: 10px;
+  padding-left: 3px;
+  font-size: 1em;
 }
-.submitButton{
-  
+.submitButton {
+  height: 5vh;
+  border-style: solid;
+  border-color: #9fbcff;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  margin-left: 5px;
 }
 
 .chatBoxWindowSub {
