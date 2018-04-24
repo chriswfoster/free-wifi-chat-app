@@ -5,12 +5,12 @@ const socketIo = require("socket.io")
 const { json } = require("body-parser")
 const index = require("./routes/socketRoute")
 const app = express()
-const server = http.createServer(app)
-const io = socketIo(server)
 app.use(index)
 app.use(json())
 app.use(cors())
 
+const server = http.createServer(app)
+const io = socketIo(server)
 app.use(express.static(`${__dirname}/../build`))
 
 const PORT = 1738
