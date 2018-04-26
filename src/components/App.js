@@ -17,9 +17,22 @@ class App extends Component {
       endpoint: "http://chat.chriswf.com",
       userList: []
     }
+    this.socket = socketIOClient("http://localhost:1738/")
   }
 
   componentDidMount() {
+    this.socket.on("Messages", data => {
+      console.log(data)
+      // let placeholder = this.state.arrayOfMessages
+      // placeholder.push(data)
+      this.setState({ arrayOfMessages: data })
+    })
+
+    this.socket.on("delete message", data => {
+      console.log(data)
+      // this.setState({ arrayOfMessages: data })
+    })
+
     let firstword = colorWords[Math.floor(Math.random() * Math.floor(186))]
     let secondword = animals[Math.floor(Math.random() * Math.floor(150))]
 
@@ -28,11 +41,6 @@ class App extends Component {
       firstword.slice(1) +
       secondword[0].toUpperCase() +
       secondword.slice(1)
-
-    const { endpoint } = this.state
-    const socket = socketIOClient(endpoint)
-    socket.on("FromServer", data => this.setState({ arrayOfMessages: data }))
-    socket.on("MembersList", data => this.setState({ userList: data }))
 
     axios
       .post("/api/usercreate", {
@@ -57,24 +65,22 @@ class App extends Component {
     e.preventDefault()
     e.target.reset()
 
+    let sendObj = {
+      user: this.state.user,
+      color: this.state.color,
+      time: date,
+      message: this.state.messagetext
+    }
+
     this.state.messagetext.length > 0
-      ? axios
-          .post("/api/sendmessage", {
-            user: this.state.user,
-            color: this.state.color,
-            time: date,
-            message: this.state.messagetext
-          })
-          .then(response =>
-            this.setState(
-              { arrayOfMessages: response.data, messagetext: "" },
-              () => elmnt.scrollIntoView()
-            )
-          )
+      ? this.socket.emit("Messages", sendObj)
       : alert("Please type a message first!")
+
+    this.setState({ messagetext: "" })
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="App">
         <HamburgerMenu userList={this.state.userList} />
@@ -82,6 +88,7 @@ class App extends Component {
           arrayOfMessages={this.state.arrayOfMessages}
           user={this.state.user}
           color={this.state.color}
+          theText={this.state.messagetext}
           textHandler={this.textHandler}
           sendMessage={this.sendMessage}
         />

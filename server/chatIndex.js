@@ -38,27 +38,27 @@ let members = [
   }
 ]
 
-let interval
 io.on("connection", socket => {
-  if (interval) {
-    clearInterval(interval)
-  }
-  intervalId = setInterval(() => getApiAndEmit(socket), 3000)
+  console.log("A user has connected to the system.")
+
+  socket.on("Messages", message => {
+    chatText.push(message)
+    console.log(chatText)
+    io.sockets.emit("Messages", chatText)
+  })
+
+  socket.on("delete message", id => {
+    let index = messages.findIndex(message => message.id === id)
+    if (index !== -1) {
+      messages.splice(index, 1)
+      io.sockets.emit("delete message", chatText)
+    }
+  })
 
   socket.on("disconnect", () => {
-    console.log("Client disconnected")
-    clearInterval(intervalId)
+    console.log("User disconnected")
   })
 })
-
-const getApiAndEmit = async socket => {
-  try {
-    socket.emit("FromServer", chatText)
-    socket.emit("MembersList", members)
-  } catch (error) {
-    console.error(`Error: ${error.code}`)
-  }
-}
 
 app.post("/api/sendmessage", (req, res) => {
   chatText.push(req.body)
