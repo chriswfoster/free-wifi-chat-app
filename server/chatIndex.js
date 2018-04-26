@@ -40,7 +40,7 @@ let members = [
 
 io.on("connection", socket => {
   console.log("A user has connected to the system.")
-
+  io.sockets.emit("Messages", chatText)
   socket.on("Messages", message => {
     chatText.push(message)
     console.log(chatText)
