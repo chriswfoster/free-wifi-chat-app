@@ -60,10 +60,6 @@ io.on("connection", socket => {
   })
 })
 
-app.post("/api/sendmessage", (req, res) => {
-  chatText.push(req.body)
-  res.status(200).json(chatText)
-})
 app.post("/api/usercreate", (req, res) => {
   members.includes(req.body)
     ? null
