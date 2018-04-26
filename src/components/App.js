@@ -14,10 +14,10 @@ class App extends Component {
       user: "ChRiSwF",
       color: "red",
       arrayOfMessages: [],
-      endpoint: "http://chat.chriswf.com",
+      endpoint: "/",
       userList: []
     }
-    this.socket = socketIOClient("http://localhost:1738/")
+    this.socket = socketIOClient("/")
   }
 
   componentDidMount() {
