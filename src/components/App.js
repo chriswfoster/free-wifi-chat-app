@@ -43,15 +43,11 @@ class App extends Component {
       )
 
     this.socket.on("Messages", data => {
-      console.log(data)
-      // let placeholder = this.state.arrayOfMessages
-      // placeholder.push(data)
       this.setState({ arrayOfMessages: data }, () => elmnt.scrollIntoView())
     })
 
     this.socket.on("delete message", data => {
-      console.log(data)
-      // this.setState({ arrayOfMessages: data })
+      this.setState({ arrayOfMessages: data })
     })
   }
 
@@ -81,7 +77,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="App">
         <HamburgerMenu userList={this.state.userList} />
