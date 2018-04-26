@@ -3,7 +3,6 @@ import ChatWindow from "./ChatWindow/ChatWindow"
 import HamburgerMenu from "./HamburgerMenu/HamburgerMenu"
 import { animals, colorWords } from "./WordSelector"
 import socketIOClient from "socket.io-client"
-import axios from "axios"
 import "./App.css"
 
 class App extends Component {
@@ -11,8 +10,8 @@ class App extends Component {
     super()
     this.state = {
       messagetext: "",
-      user: "ChRiSwF",
-      color: "red",
+      user: "",
+      color: "",
       arrayOfMessages: [],
       endpoint: "/",
       userList: []
@@ -30,24 +29,31 @@ class App extends Component {
       firstword.slice(1) +
       secondword[0].toUpperCase() +
       secondword.slice(1)
-
-    axios
-      .post("/api/usercreate", {
+    this.setState(
+      {
         user: word,
         color: `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
           Math.random() * 255
         )}, ${Math.floor(Math.random() * 255)})`
-      })
-      .then(response =>
-        this.setState({ user: response.data.user, color: response.data.color })
-      )
-
+      },
+      () => {
+        let sendObj = {
+          user: this.state.user,
+          color: this.state.color
+        }
+        this.socket.emit("Members", sendObj)
+      }
+    )
     this.socket.on("Messages", data => {
       this.setState({ arrayOfMessages: data }, () => elmnt.scrollIntoView())
     })
 
     this.socket.on("delete message", data => {
       this.setState({ arrayOfMessages: data })
+    })
+
+    this.socket.on("Members", data => {
+      this.setState({ userList: data })
     })
   }
 
@@ -77,6 +83,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="App">
         <HamburgerMenu userList={this.state.userList} />

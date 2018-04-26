@@ -43,8 +43,6 @@
   border-color: blue;
 }
 
-
-
 .navbarbackground {
   background-color: black;
   color: white;
@@ -140,6 +138,7 @@
     width: 66px;
     height: 60px;
     right: 5px;
+    opacity: 0.5;
   }
 }
 @-webkit-keyframes dda {
@@ -161,6 +160,7 @@
     width: 66px;
     height: 60px;
     right: 5px;
+    opacity: 0.5;
   }
 }
 

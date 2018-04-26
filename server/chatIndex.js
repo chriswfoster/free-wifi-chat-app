@@ -41,10 +41,17 @@ let members = [
 io.on("connection", socket => {
   console.log("A user has connected to the system.")
   io.sockets.emit("Messages", chatText)
+  io.sockets.emit("Members", members)
   socket.on("Messages", message => {
     chatText.push(message)
     console.log(chatText)
     io.sockets.emit("Messages", chatText)
+  })
+
+  socket.on("Members", member => {
+    members.push(member)
+    console.log(members)
+    io.sockets.emit("Members", members)
   })
 
   socket.on("delete message", id => {

@@ -24,7 +24,7 @@
   border-radius: 15px;
   border-style: solid;
   border-color: #5871ab;
-  box-shadow: 10px 10px 8px 10px #111D39;
+  box-shadow: 10px 10px 8px 10px #111d39;
 }
 
 .submitForm {
@@ -47,7 +47,7 @@
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0);
   margin-left: 5px;
-  font-size: 1em;
+  font-size: 2vh;
 }
 
 .chatBoxWindowSub {
