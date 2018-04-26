@@ -21,18 +21,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.socket.on("Messages", data => {
-      console.log(data)
-      // let placeholder = this.state.arrayOfMessages
-      // placeholder.push(data)
-      this.setState({ arrayOfMessages: data })
-    })
-
-    this.socket.on("delete message", data => {
-      console.log(data)
-      // this.setState({ arrayOfMessages: data })
-    })
-
+    var elmnt = document.getElementById("content") /// this keeps my chat at the bottom of the window.
     let firstword = colorWords[Math.floor(Math.random() * Math.floor(186))]
     let secondword = animals[Math.floor(Math.random() * Math.floor(150))]
 
@@ -52,6 +41,18 @@ class App extends Component {
       .then(response =>
         this.setState({ user: response.data.user, color: response.data.color })
       )
+
+    this.socket.on("Messages", data => {
+      console.log(data)
+      // let placeholder = this.state.arrayOfMessages
+      // placeholder.push(data)
+      this.setState({ arrayOfMessages: data }, () => elmnt.scrollIntoView())
+    })
+
+    this.socket.on("delete message", data => {
+      console.log(data)
+      // this.setState({ arrayOfMessages: data })
+    })
   }
 
   textHandler = e => {
@@ -76,7 +77,7 @@ class App extends Component {
       ? this.socket.emit("Messages", sendObj)
       : alert("Please type a message first!")
 
-    this.setState({ messagetext: "" })
+    this.setState({ messagetext: "" }, () => elmnt.scrollIntoView())
   }
 
   render() {
